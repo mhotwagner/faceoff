@@ -31,6 +31,18 @@
         </div>
       </div>
     </header>
+    <section class="profile-links">
+      <div
+        class="profile-links__item"
+        v-for="link in profileLinks"
+        :key="link.name"
+      >
+        <div class="profile-links__item-inner">
+          <span class="profile-links__item-name">{{ link.displayName }}</span>
+          <span class="profile-links__item-button">Edit</span>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -78,7 +90,18 @@ export default {
           name: 'create-event',
           displayName: 'event',
         }
-      ]
+      ],
+      profileLinks: [
+        { name: 'about', displayName: 'about' },
+        { name: 'artist-statement', displayName: 'artist statement' },
+        { name: 'cv', displayName: 'cv/resume' },
+        { name: 'networks', displayName: 'networks' },
+        { name: 'skills', displayName: 'skills' },
+        { name: 'publications', displayName: 'publications' },
+        { name: 'contact', displayName: 'contact' },
+        { name: 'image-inventory', displayName: 'image inventory' },
+        { name: 'location', displayName: 'location' },
+      ],
     };
   }
 };
@@ -153,6 +176,63 @@ export default {
   @include respond-to(medium) {
     margin-left: 2em;
     width: 600px;
+  }
+}
+
+.profile-links {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.profile-links__item {
+  flex: 0 0 100%;
+  display: block;
+  height: 3em;
+  padding-right: 2em;
+}
+
+.profile-links__item-inner {
+  padding-left: 1em;
+  border-bottom: 1px solid black;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.profile-links__item-name {
+  font-size: 1.5em;
+  font-weight: 500;
+  font-style: italic;
+}
+.profile-links__item-button {
+  align-self: right;
+  color: grey;
+  font-style: italic;
+  margin-top: 0.5em;
+  position: relative;
+  &:after {
+    position: absolute;
+    left: 0;
+    top: 90%;
+    transition: width 100ms ease-in;
+    content: '';
+    height: 1px;
+    background-color: grey;
+    width: 0;
+  }
+}
+
+.profile-links__item-inner:hover {
+  .profile-links__item-button:after {
+    width: 100%;
+  }
+}
+
+@include respond-to(medium) {
+  .profile-links__item {
+    flex-basis: 49%;
   }
 }
 </style>
