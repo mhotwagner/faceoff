@@ -11,13 +11,8 @@ export default new Vuex.Store({
   state: {
     account: {},
   },
-  mutations: {
-    SET_ACCOUNT(state, account) {
-      state.account = account;
-    },
-  },
   actions: {
-    GET_ACCOUNT({ commit }) {
+    GET_ACCOUNT({commit}) {
       console.log('are we doing this?');
       axios
         .get(BASE_URL + 'account/')
@@ -25,9 +20,25 @@ export default new Vuex.Store({
           commit('SET_ACCOUNT', response.data);
         });
     },
+    UPDATE_ACCOUNT: ({ commit }, account) => {
+      console.log('account', account);
+      axios.post(BASE_URL + 'account/', account).then((response) => {
+        console.log(response.data);
+        commit('SET_ACCOUNT', response.data);
+      }, (err) => {
+        console.log(err);
+      });
+    },
+  },
+  mutations: {
+    SET_ACCOUNT(state, account) {
+      state.account = account;
+    },
   },
   getters: {
-    account: (state) => state.account,
+    account: state => () => {
+      return state.account;
+    },
   },
   modules: {},
 });
