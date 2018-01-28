@@ -13,7 +13,8 @@ export default new Router({
       component: AdminView,
       children: [
         {
-          path: '/profile',
+          path: 'profile',
+          name: 'profile',
           component: ProfileSubView,
         },
       ],

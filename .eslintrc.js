@@ -31,5 +31,7 @@ module.exports = {
     'semi': ['warn', 'always'],
     // prefer indent
     'indent': ['warn', 2],
+    // no spaces before function parens
+    'space-before-function-paren': ['warn', 'never'],
   }
 };

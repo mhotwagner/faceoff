@@ -10,7 +10,7 @@
           </router-link>
         </li>
         <li class="admin-nav-account__profile admin-nav-account__item">
-          <router-link to="#">my profile</router-link>
+          <router-link :to="{ name: 'profile' }">my profile</router-link>
         </li>
         <li class="admin-nav-account__extra admin-nav-account__item">
           <router-link to="#" class="admin-nav-account__extra-link" >my list</router-link>
@@ -42,7 +42,7 @@
 <script>
 export default {
   name: 'admin-nav',
-  data () {
+  data() {
     return {
       navLinks: [
         { name: 'networks', href: 'networks' },
@@ -98,7 +98,7 @@ a:hover, a:focus {
 
 .admin-nav-account__settings:hover {
   .admin-nav-account__settings-icon {
-    transform: rotate(90deg);
+    transform: rotate(45deg);
   }
 }
 
