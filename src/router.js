@@ -1,15 +1,15 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import AdminView from 'admin/AdminView';
-import ProfileSubView from 'admin/subviews/ProfileSubView';
+import AdminView from '@/admin/AdminView';
+import ProfileSubView from '@/admin/subviews/ProfileSubView';
 
 Vue.use(Router);
 
 export default new Router({
   routes: [
     {
-      path: '/catalog',
+      path: '/admin',
       component: AdminView,
       children: [
         {
@@ -18,5 +18,5 @@ export default new Router({
         },
       ],
     }
-  ]
-})
+  ],
+});
