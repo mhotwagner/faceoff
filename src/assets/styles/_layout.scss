@@ -1,0 +1,55 @@
+$xsmall: 600px;
+$small: 960px;
+$medium: 1280px;
+$large: 1920px;
+
+$breakpoints: xsmall, small, medium, large;
+
+$container-max-widths: (
+  xsmall: calc(600px - 2rem),
+  small: calc(960px - 2rem),
+  medium: 1280px,
+  large: 1280px
+);
+
+@mixin respond-to($size) {
+  @if $size == small {
+    @media only screen and
+    (min-width: $xsmall) {
+      @content;
+    }
+  }
+
+  @else if $size == medium {
+    @media only screen and
+    (min-width: $small) {
+      @content;
+    }
+  }
+
+  @else if $size == large {
+    @media only screen and
+    (min-width: $medium) {
+      @content;
+    }
+  }
+}
+
+@mixin make-container() {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin make-container-max-widths($max-widths: $container-max-widths, $breakpoints: $breakpoints) {
+  @each $breakpoint, $container-max-width in $max-widths {
+    @include respond-to($breakpoint) {
+      max-width: $container-max-width;
+    }
+  }
+}
+
+@mixin container {
+  @include make-container();
+  @include make-container-max-widths()
+}

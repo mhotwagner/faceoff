@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import AdminNav from '@/admin/components/Nav';
+import AdminNav from '@/admin/components/AdminNav';
 
 export default {
   name: 'admin',
@@ -18,5 +18,10 @@ export default {
 </script>
 
 <style lang="scss">
+  @import '~styles/layout';
+
+  .admin {
+    @include container();
+  }
 
 </style>
