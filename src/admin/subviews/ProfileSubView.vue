@@ -20,11 +20,13 @@
             type="text"
             class="profile-header__short-description-text"
             v-model="shortDescription"
+            ref="shortDescription"
             @keyup.enter="setShortDescription"
+            @click="selectShortDescription"
           />
           <md-button
             class="profile-header__short-description-button md-icon-button"
-            @click="handleShortDescriptionButton"
+            @click="selectShortDescription"
           >
             <md-icon>mode_edit</md-icon>
           </md-button>
@@ -65,7 +67,7 @@ export default {
     }
   },
   methods: {
-    handleShortDescriptionButton() {
+    selectShortDescription() {
       this.$refs.shortDescription.select();
     },
     setShortDescription(e) {
@@ -110,13 +112,17 @@ export default {
 <style lang="scss">
 @import '~styles/layout';
 
+.profile-header {
+  margin-bottom: 1em;
+}
+
 .profile-header__quicklinks {
   display: flex;
   border-bottom: 1px solid black;
 }
 
 @include respond-to(large) {
-  .profile-header__quicklinks {
+  .profile-header {
     width: 75%;
   }
 }
@@ -148,34 +154,56 @@ export default {
 
 .profile-header__info {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .profile-header__name {
+  margin-top: 0.25em;
+  line-height: 1;
   font-size: 2.5em;
   font-weight: 500;
   text-transform: uppercase;
   font-style: italic;
+  width: 100%;
+
+  @include respond-to(medium) {
+    width: auto;
+  }
 }
 .profile-header__short-description {
   display: flex;
+  margin-left: 5%;
+  width: 90%;
+  line-height: 1;
+  @include respond-to(medium) {
+    width: auto;
+    flex-grow: 1;
+  }
 }
 
 .profile-header__short-description-button {
   margin-top: 0.5em;
+
+  @include respond-to(medium) {
+    margin-left: -3em;
+  }
 }
 
 .profile-header__short-description-text {
   color: grey;
+  width: 100%;
   height: 2.5em;
-  padding-top: 0.75em;
   padding-bottom: 0;
+  margin-bottom: 0.5em;
   border: none;
   border-bottom: 1px solid black;
   font-size: 0.875rem;
 
   @include respond-to(medium) {
+    width: auto;
     margin-left: 2em;
-    width: 600px;
+    padding-top: 0.75em;
+    width: 100%;
   }
 }
 
