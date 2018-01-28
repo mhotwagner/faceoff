@@ -14,6 +14,9 @@ export default {
   components: {
     AdminNav,
   },
+  mounted() {
+    this.$store.dispatch('GET_ACCOUNT');
+  },
 };
 </script>
 
