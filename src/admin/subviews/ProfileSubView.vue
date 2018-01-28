@@ -34,23 +34,23 @@
       </div>
     </header>
     <section class="profile-links">
-      <div
+      <profile-action-item
         class="profile-links__item"
         v-for="link in profileLinks"
         :key="link.name"
-      >
-        <div class="profile-links__item-inner">
-          <span class="profile-links__item-name">{{ link.displayName }}</span>
-          <span class="profile-links__item-button">Edit</span>
-        </div>
-      </div>
+        :action="link"></profile-action-item>
     </section>
   </div>
 </template>
 
 <script>
+import ProfileActionItem from '@/admin/components/ProfileActionItem';
+
 export default {
   name: 'profile',
+  components: {
+    ProfileActionItem,
+  },
   computed: {
     account() {
       return this.$store.getters.account();

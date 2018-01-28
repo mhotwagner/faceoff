@@ -98,7 +98,7 @@ a:hover, a:focus {
 
 .admin-nav-account__settings:hover {
   .admin-nav-account__settings-icon {
-    transform: rotate(45deg);
+    transform: rotate(deg);
   }
 }
 
