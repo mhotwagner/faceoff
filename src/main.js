@@ -5,8 +5,9 @@ import Vue from 'vue';
 import VueMaterial from 'vue-material';
 import 'vue-material/dist/vue-material.min.css';
 
-import App from './App';
-import router from './router';
+import App from '@/App';
+import router from '@/router';
+import store from '@/store';
 
 Vue.config.productionTip = false;
 
@@ -16,6 +17,7 @@ Vue.use(VueMaterial);
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 });
