@@ -263,4 +263,10 @@ export default {
     flex-basis: 49%;
   }
 }
+
+@include respond-to(large) {
+  .profile-links__item {
+    flex-basis: 32%;
+  }
+}
 </style>
