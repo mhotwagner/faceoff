@@ -7,5 +7,59 @@
     "email": "bryan.graff@example.com",
     "short_description": "This is about to be my new motha fuckin' short description, BITCH",
     "shortDescription": "This is about to be my new motha fuckin' short description, BITCH"
-  }
+  },
+  "users": [
+    {
+      "id": 1,
+      "projects": [
+        {
+          "id": 1,
+          "user_id": 1,
+          "title": "Dope Project",
+          "short_description": "This is what would would, and many have, referred to as a \"Dope\" \"Project\".",
+          "artist_statement": "Some sort of statement?",
+          "exhibits": [
+            1
+          ],
+          "tags": [],
+          "images": []
+        }
+      ],
+      "exhibits": [
+        {
+          "id": 1,
+          "name": "Exhibit A",
+          "location": [
+            1
+          ],
+          "date": "2019-01-01"
+        }
+      ]
+    }
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "name": "A Cool Place!",
+      "city": "New York",
+      "state": "New York",
+      "country": "United States"
+    }
+  ],
+  "projects": [
+    {
+      "user_id": 1,
+      "title": "thing",
+      "short_description": "what",
+      "artist_statement": "where",
+      "id": 1
+    },
+    {
+      "user_id": 1,
+      "title": "Another thing!",
+      "short_description": "You know, one of those thing things",
+      "artist_statement": "A big thing!",
+      "id": 2
+    }
+  ]
 }

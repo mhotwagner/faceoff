@@ -29,6 +29,14 @@ export default new Vuex.Store({
         console.log(err);
       });
     },
+    CREATE_PROJECT: ({ commit }, project) => {
+      console.log('project', project);
+      axios.post(BASE_URL + 'projects/', project).then((response) => {
+        console.log(response.data);
+      }, (err) => {
+        console.log(err);
+      });
+    },
   },
   mutations: {
     SET_ACCOUNT(state, account) {

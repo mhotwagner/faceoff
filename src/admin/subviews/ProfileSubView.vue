@@ -2,14 +2,14 @@
   <div class="profile">
     <header class="profile-header">
       <div class="profile-header__quicklinks">
-          <router-link
+          <button
             v-for="link in quicklinks"
-            :to="{ name: link.name }"
+            @click="link.action"
             :key="link.name"
             class="profile-header__quicklink"
           >
             {{ link.displayName }}
-          </router-link>
+          </button>
       </div>
       <div class="profile-header__info">
         <div class="profile-header__name">
@@ -38,18 +38,24 @@
         class="profile-links__item"
         v-for="link in profileLinks"
         :key="link.name"
-        :action="link"></profile-action-item>
+        :action="link"
+      ></profile-action-item>
     </section>
+
+    <create-project-modal v-if="showCreateProjectModal" :value="{ user_id: account.id }"></create-project-modal>
+
   </div>
 </template>
 
 <script>
 import ProfileActionItem from '@/admin/components/ProfileActionItem';
+import CreateProjectModal from '@/admin/components/CreateProjectModal';
 
 export default {
   name: 'profile',
   components: {
     ProfileActionItem,
+    CreateProjectModal,
   },
   computed: {
     account() {
@@ -79,18 +85,25 @@ export default {
   },
   data() {
     return {
+      showCreateProjectModal: false,
+      project: {
+        title: '',
+      },
       quicklinks: [
         {
           name: 'create-post',
           displayName: 'post',
+          action: () => { return false; },
         },
         {
           name: 'create-project',
           displayName: 'project',
+          action: () => { this.showCreateProjectModal = true; },
         },
         {
           name: 'create-event',
           displayName: 'event',
+          action: () => { return false; },
         }
       ],
       profileLinks: [
@@ -112,6 +125,9 @@ export default {
 <style lang="scss">
 @import '~styles/layout';
 
+.create-project-form__row {
+}
+
 .profile-header {
   margin-bottom: 1em;
 }
@@ -128,11 +144,13 @@ export default {
 }
 
 .profile-header__quicklink {
-    padding-left: .875em;
-    padding-right: 2em;
-    text-transform: uppercase;
-    font-size: 2.25em;
-    line-height: 2;
+  position: relative;
+  padding-left: .875em;
+  padding-right: 2em;
+  text-transform: uppercase;
+  font-size: 2.25em;
+  line-height: 2;
+  cursor: pointer;
 }
 
 .profile-header__quicklink:before {
