@@ -47,18 +47,25 @@
       v-on:close="showCreateProjectModal = false"
     ></create-project-modal>
 
+    <create-event-modal
+      v-if="showCreateEventModal" :value="{ user_id: account.id }"
+      v-on:close="showCreateEventModal = false"
+    ></create-event-modal>
+
   </div>
 </template>
 
 <script>
 import ProfileActionItem from '@/admin/components/ProfileActionItem';
 import CreateProjectModal from '@/admin/components/CreateProjectModal';
+import CreateEventModal from '@/admin/components/CreateEventModal';
 
 export default {
   name: 'profile',
   components: {
     ProfileActionItem,
     CreateProjectModal,
+    CreateEventModal
   },
   computed: {
     account() {
@@ -89,6 +96,7 @@ export default {
   data() {
     return {
       showCreateProjectModal: false,
+      showCreateEventModal: false,
       project: {
         title: '',
       },
@@ -106,7 +114,7 @@ export default {
         {
           name: 'create-event',
           displayName: 'event',
-          action: () => { return false; },
+          action: () => { this.showCreateEventModal = true; },
         }
       ],
       profileLinks: [

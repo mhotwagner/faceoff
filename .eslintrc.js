@@ -30,7 +30,7 @@ module.exports = {
     // prefer semi-colon at end of line
     'semi': ['warn', 'always'],
     // prefer indent
-    'indent': ['warn', 2],
+    'indent': ['error', 2],
     // no spaces before function parens
     'space-before-function-paren': ['warn', 'never'],
   }

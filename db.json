@@ -61,5 +61,22 @@
       "artist_statement": "A big thing!",
       "id": 2
     }
+  ],
+  "events": [
+    {
+      "isTrusted": true,
+      "id": 1
+    },
+    {
+      "isTrusted": true,
+      "id": 2
+    },
+    {
+      "user_id": 1,
+      "title": "a",
+      "datetime": "b",
+      "description": "c",
+      "id": 3
+    }
   ]
 }
