@@ -3,6 +3,7 @@
 
 import Vue from 'vue';
 import VeeValidate from 'vee-validate';
+import wysiwyg from 'vue-wysiwyg';
 import VueMaterial from 'vue-material';
 import 'vue-material/dist/vue-material.min.css';
 
@@ -13,6 +14,7 @@ import store from '@/store';
 Vue.config.productionTip = false;
 
 Vue.use(VeeValidate);
+Vue.use(wysiwyg, {}); // config is optional. more below
 Vue.use(VueMaterial);
 
 /* eslint-disable no-new */

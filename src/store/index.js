@@ -30,7 +30,6 @@ export default new Vuex.Store({
       });
     },
     CREATE_EVENT: ({ commit }, event, callback) => {
-      console.log('creating event', event);
       axios.post(BASE_URL + 'events/', event).then((response) => {
         if (callback) callback(response.data);
       }, (err) => {
@@ -38,10 +37,16 @@ export default new Vuex.Store({
         throw err;
       });
     },
-    CREATE_PROJECT: ({ commit }, project) => {
-      console.log('creating project', project);
+    CREATE_POST: ({ commit }, post, callback) => {
+      axios.post(BASE_URL + 'posts/', post).then((response) => {
+        if (callback) callback(response.data);
+      }, (err) => {
+        throw err;
+      });
+    },
+    CREATE_PROJECT: ({ commit }, project, callback) => {
       axios.post(BASE_URL + 'projects/', project).then((response) => {
-        console.log(response.data);
+        if (callback) callback(response.data);
       }, (err) => {
         throw err;
       });

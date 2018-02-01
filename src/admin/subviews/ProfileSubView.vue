@@ -52,20 +52,27 @@
       v-on:close="showCreateEventModal = false"
     ></create-event-modal>
 
+    <create-post-modal
+      v-if="showCreatePostModal" :value="{ user_id: account.id }"
+      v-on:close="showCreatePostModal = false"
+    ></create-post-modal>
+
   </div>
 </template>
 
 <script>
 import ProfileActionItem from '@/admin/components/ProfileActionItem';
-import CreateProjectModal from '@/admin/components/CreateProjectModal';
 import CreateEventModal from '@/admin/components/CreateEventModal';
+import CreatePostModal from '@/admin/components/CreatePostModal';
+import CreateProjectModal from '@/admin/components/CreateProjectModal';
 
 export default {
   name: 'profile',
   components: {
     ProfileActionItem,
+    CreateEventModal,
+    CreatePostModal,
     CreateProjectModal,
-    CreateEventModal
   },
   computed: {
     account() {
@@ -95,8 +102,9 @@ export default {
   },
   data() {
     return {
-      showCreateProjectModal: false,
       showCreateEventModal: false,
+      showCreatePostModal: false,
+      showCreateProjectModal: false,
       project: {
         title: '',
       },
@@ -104,7 +112,7 @@ export default {
         {
           name: 'create-post',
           displayName: 'post',
-          action: () => { return false; },
+          action: () => { this.showCreatePostModal = true; },
         },
         {
           name: 'create-project',
