@@ -42,7 +42,10 @@
       ></profile-action-item>
     </section>
 
-    <create-project-modal v-if="showCreateProjectModal" :value="{ user_id: account.id }"></create-project-modal>
+    <create-project-modal
+      v-if="showCreateProjectModal" :value="{ user_id: account.id }"
+      v-on:close="showCreateProjectModal = false"
+    ></create-project-modal>
 
   </div>
 </template>
