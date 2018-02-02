@@ -86,7 +86,38 @@ export default {
     CreateProjectModal,
     FormModal,
   },
+  beforeMount() {
+    console.log(this.account);
+  },
   computed: {
+    aboutFormModalFields() {
+      return [
+        {
+          name: 'short_text',
+          placeholder: 'SHORT TEXT',
+          inputType: 'textarea',
+          value: this.account.short_text,
+          style: { height: '3em' },
+        },
+        {
+          name: 'about',
+          placeholder: 'ABOUT YOURSELF',
+          inputType: 'textarea',
+          value: this.account.about,
+          style: { height: '6em' },
+        },
+        {
+          name: 'tags',
+          placeholder: 'SEARCH TAGS',
+          inputType: 'null',
+        },
+        {
+          name: 'images',
+          placeholder: 'IMAGES',
+          inputType: 'null',
+        },
+      ];
+    },
     account() {
       return this.$store.getters.account();
     },
@@ -112,27 +143,6 @@ export default {
   data() {
     return {
       showAboutFormModal: false,
-      aboutFormModalFields: [
-        {
-          name: 'short_text',
-          placeholder: 'SHORT TEXT',
-        },
-        {
-          name: 'about',
-          placeholder: 'ABOUT YOURSELF',
-          inputType: 'textarea',
-        },
-        {
-          name: 'tags',
-          placeholder: 'SEARCH TAGS',
-          inputType: 'null',
-        },
-        {
-          name: 'images',
-          placeholder: 'IMAGES',
-          inputType: 'null',
-        },
-      ],
       showCreateEventModal: false,
       showCreatePostModal: false,
       showCreateProjectModal: false,

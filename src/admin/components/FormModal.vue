@@ -13,7 +13,7 @@
         :key="field.name"
         :class="getModalRowClasses(field)"
       >
-        <p v-if="field.inputType === 'null'">
+        <p v-if="field.inputType === 'null'" :style="field.style">
           {{ field.placeholder }}
         </p>
         <textarea
@@ -22,6 +22,8 @@
           :name="field.name"
           :v-validate="field.validate ? '\'required\'' : ''"
           :placeholder="field.placeholder"
+          :style="field.style"
+          @keyup.enter.stop
         ></textarea>
         <input
           v-else
@@ -29,6 +31,7 @@
           :name="field.name"
           :v-validate="field.validate ? '\'required\'' : ''"
           :placeholder="field.placeholder"
+          :style="field.style"
         />
       </div>
     </div>
@@ -52,7 +55,7 @@ export default {
   },
   beforeMount() {
     this.formFields.forEach((field) => {
-      if (field.inputType !== 'null') this.model[field.name] = null;
+      if (field.inputType !== 'null') this.model[field.name] = field.value;
     });
   },
   computed: {
@@ -95,7 +98,9 @@ export default {
         name: '',
         placeholder: '',
         inputType: null,
+        value: null,
         validate: true,
+        style: {},
       },
       model: {},
     };
