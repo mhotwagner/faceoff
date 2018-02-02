@@ -24,6 +24,8 @@
           :placeholder="field.placeholder"
           :style="field.style"
           @keyup.enter.stop
+          @focus="activateField(field)"
+          @blur="deactivateField(field)"
         ></textarea>
         <input
           v-else
@@ -32,6 +34,8 @@
           :v-validate="field.validate ? '\'required\'' : ''"
           :placeholder="field.placeholder"
           :style="field.style"
+          @focus="activateField(field)"
+          @blur="deactivateField(field)"
         />
       </div>
     </div>
@@ -69,6 +73,15 @@ export default {
     },
   },
   methods: {
+    activateField(field) {
+      this.activeFields.push(field.name);
+    },
+    deactivateField(field) {
+      this.activeFields = this.activeFields
+        .filter((fieldName) => {
+          return fieldName !== field.name;
+        });
+    },
     closeModal() {
       this.$emit('close');
     },
@@ -82,6 +95,7 @@ export default {
         'form-modal__row': true,
         [`form-modal__row__${rowData.name}`]: true,
         'form-modal__row_error': rowData.validate && this.errors.has(rowData.name),
+        'form-modal__row_active': this.activeFields.includes(rowData.name),
       };
     },
     submit() {
@@ -103,6 +117,7 @@ export default {
         style: {},
       },
       model: {},
+      activeFields: [],
     };
   },
 };
@@ -161,6 +176,10 @@ export default {
     }
     &.form-modal__row_error {
       border-color: red;
+    }
+
+    &.form-modal__row_active {
+      border-color: #1496bb;
     }
 
     @include respond-to(large) {
