@@ -6,7 +6,11 @@
     "full_name": "Bryan Graf",
     "email": "bryan.graff@example.com",
     "short_description": "This is about to be my new motha fuckin' short description, BITCH",
-    "shortDescription": "This is about to be my new motha fuckin' short description, BITCH"
+    "shortDescription": "This is about to be my new motha fuckin' short description, BITCH",
+    "short_text": "I am an artist.",
+    "about": "A real live artist!\n\n",
+    "tags": null,
+    "images": null
   },
   "users": [
     {
@@ -62,21 +66,5 @@
       "id": 2
     }
   ],
-  "events": [
-    {
-      "isTrusted": true,
-      "id": 1
-    },
-    {
-      "isTrusted": true,
-      "id": 2
-    },
-    {
-      "user_id": 1,
-      "title": "a",
-      "datetime": "b",
-      "description": "c",
-      "id": 3
-    }
-  ]
+  "events": []
 }

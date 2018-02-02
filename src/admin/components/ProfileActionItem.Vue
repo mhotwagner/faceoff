@@ -1,8 +1,8 @@
 <template>
   <div class="profile-action-item">
     <div class="profile-action-item__inner">
-      <span class="profile-action-item__name">{{ action.displayName }}</span>
-      <span class="profile-action-item__button">Edit</span>
+      <span class="profile-action-item__name">{{ text }}</span>
+      <span class="profile-action-item__button">{{ buttonText }}</span>
     </div>
   </div>
 </template>
@@ -11,7 +11,10 @@
 export default {
   name: 'profile-action-item',
   props: {
-    action: {},
+    text: String,
+    buttonText: {
+      default: 'Edit',
+    },
   },
 };
 </script>
@@ -21,6 +24,7 @@ export default {
     display: block;
     height: 3em;
     padding-right: 2em;
+    cursor: pointer;
   }
 
   .profile-action-item__inner {
@@ -51,6 +55,12 @@ export default {
       height: 1px;
       background-color: grey;
       width: 0;
+    }
+  }
+
+  .profile-action-item:hover {
+    .profile-action-item__button:after {
+      width: 100%;
     }
   }
 </style>

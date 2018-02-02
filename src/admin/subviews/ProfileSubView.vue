@@ -36,27 +36,37 @@
     <section class="profile-links">
       <profile-action-item
         class="profile-links__item"
-        v-for="link in profileLinks"
-        :key="link.name"
-        :action="link"
-      ></profile-action-item>
+        v-for="actionItem in profileActionItems"
+        :key="actionItem.name"
+        :text="actionItem.displayName"
+        @click.native="actionItem.action"
+      ><!-- empty --></profile-action-item>
     </section>
+
+    <form-modal
+      class="profile-links__about-modal"
+      v-if="showAboutFormModal"
+      title="EDIT ABOUT PAGE:"
+      buttonText="PUBLISH"
+      :formFields="aboutFormModalFields"
+      action-type="UPDATE_ACCOUNT"
+      v-on:close="showAboutFormModal = false"
+    ><!-- empty --></form-modal>
 
     <create-project-modal
       v-if="showCreateProjectModal" :value="{ user_id: account.id }"
       v-on:close="showCreateProjectModal = false"
-    ></create-project-modal>
+    ><!-- empty --></create-project-modal>
 
     <create-event-modal
       v-if="showCreateEventModal" :value="{ user_id: account.id }"
       v-on:close="showCreateEventModal = false"
-    ></create-event-modal>
+    ><!-- empty --></create-event-modal>
 
     <create-post-modal
       v-if="showCreatePostModal" :value="{ user_id: account.id }"
       v-on:close="showCreatePostModal = false"
-    ></create-post-modal>
-
+    ><!-- empty --></create-post-modal>
   </div>
 </template>
 
@@ -65,6 +75,7 @@ import ProfileActionItem from '@/admin/components/ProfileActionItem';
 import CreateEventModal from '@/admin/components/CreateEventModal';
 import CreatePostModal from '@/admin/components/CreatePostModal';
 import CreateProjectModal from '@/admin/components/CreateProjectModal';
+import FormModal from '@/admin/components/FormModal';
 
 export default {
   name: 'profile',
@@ -73,8 +84,40 @@ export default {
     CreateEventModal,
     CreatePostModal,
     CreateProjectModal,
+    FormModal,
+  },
+  beforeMount() {
+    console.log(this.account);
   },
   computed: {
+    aboutFormModalFields() {
+      return [
+        {
+          name: 'short_text',
+          placeholder: 'SHORT TEXT',
+          inputType: 'textarea',
+          value: this.account.short_text,
+          style: { height: '3em' },
+        },
+        {
+          name: 'about',
+          placeholder: 'ABOUT YOURSELF',
+          inputType: 'textarea',
+          value: this.account.about,
+          style: { height: '6em' },
+        },
+        {
+          name: 'tags',
+          placeholder: 'SEARCH TAGS',
+          inputType: 'null',
+        },
+        {
+          name: 'images',
+          placeholder: 'IMAGES',
+          inputType: 'null',
+        },
+      ];
+    },
     account() {
       return this.$store.getters.account();
     },
@@ -83,7 +126,6 @@ export default {
         return this.$store.getters.account().short_description;
       },
       set(value) {
-        console.log('pre', this.account);
         const account = Object.assign({}, this.account, { short_description: value });
         this.$store.commit('SET_ACCOUNT', account);
       },
@@ -97,11 +139,10 @@ export default {
       const account = Object.assign({}, this.account, { shortDescription: e.target.value });
       this.$store.dispatch('UPDATE_ACCOUNT', account);
     },
-    editShortDescription() {
-    }
   },
   data() {
     return {
+      showAboutFormModal: false,
       showCreateEventModal: false,
       showCreatePostModal: false,
       showCreateProjectModal: false,
@@ -125,16 +166,20 @@ export default {
           action: () => { this.showCreateEventModal = true; },
         }
       ],
-      profileLinks: [
-        { name: 'about', displayName: 'about' },
-        { name: 'artist-statement', displayName: 'artist statement' },
-        { name: 'cv', displayName: 'cv/resume' },
-        { name: 'networks', displayName: 'networks' },
-        { name: 'skills', displayName: 'skills' },
-        { name: 'publications', displayName: 'publications' },
-        { name: 'contact', displayName: 'contact' },
-        { name: 'image-inventory', displayName: 'image inventory' },
-        { name: 'location', displayName: 'location' },
+      profileActionItems: [
+        {
+          name: 'about',
+          displayName: 'about',
+          action: () => { this.showAboutFormModal = true; },
+        },
+        { name: 'artist_statement', displayName: 'artist statement', action: () => { return null; } },
+        { name: 'cv', displayName: 'cv/resume', action: () => { return null; } },
+        { name: 'networks', displayName: 'networks', action: () => { return null; } },
+        { name: 'skills', displayName: 'skills', action: () => { return null; } },
+        { name: 'publications', displayName: 'publications', action: () => { return null; } },
+        { name: 'contact', displayName: 'contact', action: () => { return null; } },
+        { name: 'image_inventory', displayName: 'image inventory', action: () => { return null; } },
+        { name: 'location', displayName: 'location', action: () => { return null; } },
       ],
     };
   }
