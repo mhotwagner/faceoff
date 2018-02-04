@@ -67,6 +67,11 @@
       v-if="showCreatePostModal" :value="{ user_id: account.id }"
       v-on:close="showCreatePostModal = false"
     ><!-- empty --></create-post-modal>
+
+    <cv-modal
+      v-if="showCvModal" :value="{ user_id: account.id }"
+      v-on:close="showCvModal = false"
+    ><!-- empty --></cv-modal>
   </div>
 </template>
 
@@ -76,6 +81,7 @@ import CreateEventModal from '@/admin/components/CreateEventModal';
 import CreatePostModal from '@/admin/components/CreatePostModal';
 import CreateProjectModal from '@/admin/components/CreateProjectModal';
 import FormModal from '@/admin/components/FormModal';
+import CvModal from '@/admin/components/CvModal';
 
 export default {
   name: 'profile',
@@ -85,6 +91,7 @@ export default {
     CreatePostModal,
     CreateProjectModal,
     FormModal,
+    CvModal,
   },
   beforeMount() {
     console.log(this.account);
@@ -146,6 +153,7 @@ export default {
       showCreateEventModal: false,
       showCreatePostModal: false,
       showCreateProjectModal: false,
+      showCvModal: false,
       project: {
         title: '',
       },
@@ -173,7 +181,10 @@ export default {
           action: () => { this.showAboutFormModal = true; },
         },
         { name: 'artist_statement', displayName: 'artist statement', action: () => { return null; } },
-        { name: 'cv', displayName: 'cv/resume', action: () => { return null; } },
+        {
+          name: 'cv',
+          displayName: 'cv/resume',
+          action: () => { this.showCvModal = true; } },
         { name: 'networks', displayName: 'networks', action: () => { return null; } },
         { name: 'skills', displayName: 'skills', action: () => { return null; } },
         { name: 'publications', displayName: 'publications', action: () => { return null; } },

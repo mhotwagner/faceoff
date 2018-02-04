@@ -26,6 +26,13 @@ export default new Vuex.Store({
         throw err;
       });
     },
+    CREATE_CV_ROW: ({ commit }, cvRow, callback) => {
+      axios.post(BASE_URL + 'cv-rows/', cvRow).then((response) => {
+        if (callback) callback(response.data);
+      }, (err) => {
+        throw err;
+      });
+    },
     CREATE_EVENT: ({ commit }, event, callback) => {
       axios.post(BASE_URL + 'events/', event).then((response) => {
         if (callback) callback(response.data);
