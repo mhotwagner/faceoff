@@ -12,6 +12,7 @@
         v-for="field in formattedFields"
         :key="field.name"
         :class="getModalRowClasses(field)"
+        v-if="field.inputType !== 'hidden'"
       >
         <p v-if="field.inputType === 'null'" :style="field.style">
           {{ field.placeholder }}
