@@ -72,6 +72,17 @@ export default {
   name: 'cv-modal',
   props: {
     value: {},
+    userId: {
+      required: true,
+    },
+  },
+  computed: {
+    activeCvRows() {
+      return this.$store.getters.cvRows.filter((cvRow) => { return cvRow.active === true; });
+    },
+    // cvCategories() {
+    //   return this.activeCvRows.map((cv))
+    // }
   },
   methods: {
     activateField(field) {
@@ -117,6 +128,9 @@ export default {
   },
   beforeMount() {
     this.cvRowModel = Object.assign({}, this.value, this.cvRowSchema);
+  },
+  mounted() {
+    this.$store.dispatch('GET_CV_ROWS', this.userId);
   },
   data() {
     return {

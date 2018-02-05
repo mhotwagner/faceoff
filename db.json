@@ -5,8 +5,8 @@
     "last_name": "Graf",
     "full_name": "Bryan Graf",
     "email": "bryan.graff@example.com",
-    "short_description": "This is about to be my new motha fuckin' short description, BITCH",
-    "shortDescription": "This is about to be my new motha fuckin' short description, BITCH",
+    "short_description": "HI!",
+    "shortDescription": "HI!",
     "short_text": "I am an artist.",
     "about": "A real live artist!\n\n",
     "tags": null,
@@ -64,8 +64,26 @@
       "short_description": "You know, one of those thing things",
       "artist_statement": "A big thing!",
       "id": 2
+    },
+    {
+      "user_id": 1,
+      "title": "TEst Propject",
+      "short_description": "With not description",
+      "artist_statement": "What is an artist statemtn?",
+      "id": 3
     }
   ],
   "events": [],
-  "cv-rows": []
+  "cv-rows": [
+    {
+      "user_id": 1,
+      "title": "Some Entry",
+      "category": "Some Category",
+      "year": "1999",
+      "location": "Some Place",
+      "location_name": "Some Place's Name",
+      "active": true,
+      "id": 1
+    }
+  ]
 }

@@ -12,12 +12,19 @@ export default new Vuex.Store({
     account: {},
   },
   actions: {
-    GET_ACCOUNT({commit}) {
+    GET_ACCOUNT({ commit }) {
       axios
         .get(BASE_URL + 'account/')
         .then((response) => {
           commit('SET_ACCOUNT', response.data);
         });
+    },
+    GET_CV_ROWS: ({ commit }, userId) => {
+      axios.get(`${BASE_URL}cv-rows?user_id=${userId}`).then((response) => {
+        commit('SET_CV_ROWS', response.data);
+      }, (err) => {
+        throw err;
+      });
     },
     UPDATE_ACCOUNT: ({ commit }, account) => {
       axios.patch(BASE_URL + 'account/', account).then((response) => {
@@ -58,6 +65,9 @@ export default new Vuex.Store({
   mutations: {
     SET_ACCOUNT(state, account) {
       state.account = account;
+    },
+    SET_CV_ROWS(state, cvRows) {
+      state.cvRows = cvRows;
     },
   },
   getters: {

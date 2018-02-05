@@ -69,7 +69,7 @@
     ><!-- empty --></create-post-modal>
 
     <cv-modal
-      v-if="showCvModal" :value="{ user_id: account.id }"
+      v-if="showCvModal" :value="{ user_id: account.id }" :user-id="account.id"
       v-on:close="showCvModal = false"
     ><!-- empty --></cv-modal>
   </div>
